@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "ConnectMe",
+  "version": "1.0.0",
+  "description": "A basic boot for connection in linkdlin",
+  "host_permissions":["https://*.linkedin.com/*"],
+  "icons": {
+    "48": "images/tres.png"
+  }, 
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs", 
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": [
+        "https://*.linkedin.com/*"
+      ]
+    }
+  ]
+}
