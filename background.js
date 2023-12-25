@@ -9,12 +9,7 @@
 
 
 chrome.tabs.onUpdated.addListener((tabId, tab) => {
-  console.log("ongoundgerg")
-
-
-
-
-  if (tab.url && tab.url.includes("youtube.com/watch")) {
+  if (tab.url && tab.url.includes("linkedin.com")) {
     const queryParameters = tab.url.split("?")[1];
     const urlParameters = new URLSearchParams(queryParameters);
 

@@ -1,26 +1,9 @@
 
-
-
-/* setTimeout(() => {
-  list = document.querySelectorAll('button.artdeco-button.artdeco-button--2.artdeco-button--secondary.ember-view.full-width')
-  console.log(list)
-  list.forEach(element => {
-  console.log(element)
-});
-}, 2000);
- */
-
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.greeting === 'hello') {
     // Realize ações na página conforme necessário
     console.log("Mensagem recebida na página:", request);
-   
-
-    execute()
-
-
-
-
+    collect()
     // Enviar uma resposta se necessário
     sendResponse({ response: "Mensagem recebida com sucesso na página!" });
   }
@@ -32,13 +15,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 
 function algortmeExecute(more) {
-  more.forEach(async e => {
+  more.forEach(e => {
         e.click()
         var numeroDeExecucoes = 5;
         var intervalo = 2000;
         var contador = 0;
-        var intervalID = await setInterval(async function() {
-          document.querySelector("button.artdeco-button.artdeco-button--muted.artdeco-button--1.artdeco-button--full.artdeco-button--secondary.ember-view.scaffold-finite-scroll__load-button").click()
+        var intervalID = setInterval( function() {
+          if(document.querySelector("button.artdeco-button.artdeco-button--muted.artdeco-button--1.artdeco-button--full.artdeco-button--secondary.ember-view.scaffold-finite-scroll__load-button")){
+            document.querySelector("button.artdeco-button.artdeco-button--muted.artdeco-button--1.artdeco-button--full.artdeco-button--secondary.ember-view.scaffold-finite-scroll__load-button").click()
+          }
+          
           contador++;
           if (contador === numeroDeExecucoes) {
             clearInterval(intervalID);
@@ -67,7 +53,7 @@ function clickInBtns(){
     list = document.querySelectorAll('button.artdeco-button.artdeco-button--2.artdeco-button--secondary.ember-view.full-width')
     list.forEach(element => {
       if (element.getAttribute('aria-label').includes('Convidar')) {
-        conosole.log(element)
+        console.log(element)
       }
   });
 }
@@ -80,24 +66,19 @@ function clickInBtns(){
 
 
 
-
-
-
-
-
-
-var numeroDeExecucoes = 10;
-        var intervalo = 1000;
-        var contador = 0;
-        var intervalID = setInterval(function() {
-          document.querySelector("button.artdeco-button.artdeco-button--muted.artdeco-button--1.artdeco-button--full.artdeco-button--secondary.ember-view.scaffold-finite-scroll__load-button").click()
-          contador++;
-          if (contador === numeroDeExecucoes) {
-            clearInterval(intervalID);
-            execute()
-          }
-        }, intervalo);
-
+function collect() {
+  var numeroDeExecucoes = 10;
+  var intervalo = 1000;
+  var contador = 0;
+  var intervalID = setInterval(function() {
+    document.querySelector("button.artdeco-button.artdeco-button--muted.artdeco-button--1.artdeco-button--full.artdeco-button--secondary.ember-view.scaffold-finite-scroll__load-button").click()
+    contador++;
+    if (contador === numeroDeExecucoes) {
+      clearInterval(intervalID);
+      execute()
+    }
+  }, intervalo);
+}
 
 
 function execute(){
