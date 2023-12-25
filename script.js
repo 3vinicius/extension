@@ -1,4 +1,20 @@
 
+
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('meuBotao');
+  btn.addEventListener('click', sendMessageToPage);
+});
+
+async function sendMessageToPage() {
+  // Obter a guia ativa
+  const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  // Enviar uma mensagem para a guia ativa
+  chrome.tabs.sendMessage(activeTab.id, { greeting: "hello" }, function(response) {
+    console.log(response);
+  });
+}
+
 /* 
 document.addEventListener('DOMContentLoaded', function() {
   var injetarScriptButton = document.getElementById('injetarScript');
